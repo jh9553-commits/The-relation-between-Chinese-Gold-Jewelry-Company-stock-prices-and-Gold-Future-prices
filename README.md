@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This research examines the relationship between Chinese gold jewelry company stock prices and gold futures prices using data from 2010-2025 across multiple time frequencies. A market-cap-weighted Gold Jewelry Index was constructed from three major Hong Kong-listed companies. Analysis reveals a consistently positive and statistically significant relationship that strengthens dramatically across time horizons: daily (R² = 0.003, β = 0.05), monthly (R² = 0.115, β = 0.35), quarterly (R² = 0.131, β = 0.38), and yearly (R² = 0.290, β = 0.54). After controlling for broader market movements via the Hang Seng Index in multiple regression models, gold price movements retain independent predictive power (p < 0.05) for jewelry stock returns at monthly, quarterly, and yearly frequencies, validating the fundamental economic linkage between raw material costs/demand dynamics and corporate valuations.
+This research examines the relationship between Chinese gold jewelry company stock prices and gold futures prices using data from 2010-2025 across multiple time frequencies. A market-cap-weighted Gold Jewelry Index was constructed from three major Hong Kong-listed companies. Analysis reveals a consistently positive and statistically significant relationship that strengthens dramatically across time horizons: daily (R² = 0.003, β = 0.05), monthly (R² = 0.115, β = 0.35), quarterly (R² = 0.131, β = 0.38), and yearly (R² = 0.290, β = 0.54). After controlling for broader market movements via the Hang Seng Index in multiple regression models, gold price movements retain independent predictive power (p < 0.05) for jewelry stock returns at monthly, quarterly, and yearly frequencies, validating the fundamental economic linkage between raw material costs/demand dynamics and corporate valuations. Formal F-tests comparing linear and non-linear models reveal that polynomial specifications with squared terms and interaction effects provide statistically significant improvements only for daily and monthly frequencies, while simpler linear specifications are optimal at quarterly and yearly horizons.
 
 ## 1. Research Methodology
 
@@ -176,7 +176,7 @@ While daily returns strongly deviate from normality, quarterly/yearly aggregatio
 - COMEX to Gold Jewelry Index: 0.36 (moderate-strong)
 - Individual stocks: 0.28-0.41 range
 
-*Interpretation:* Quarterly financial reporting cycle aligns with this frequency. Quarterly results reflect gold price environment's impact on COGS, gross margins, and inventory valuations. Market expectations adjust to fundamental implications.
+*Interpretation:* Quarterly financial reporting cycle aligns with this frequency. Quarterly results reflect gold price impact on COGS, gross margins, and inventory valuations. Market expectations adjust to fundamental implications.
 
 **Jewelry to Hang Seng Index:**
 - Gold Jewelry Index to HSI: 0.46
@@ -304,7 +304,7 @@ Across all frequencies, Hang Seng Index coefficients are consistently larger tha
 2. General market sentiment, liquidity conditions, and macroeconomic factors in Hong Kong significantly drive stock performance
 3. Jewelry stocks have substantial systematic risk (market beta) beyond commodity exposure
 
-## 6. Non-Linear Regression Analysis
+## 6. Non-Linear Regression Analysis: F-Test Results
 
 ### 6.1 Model Specification
 
@@ -314,46 +314,139 @@ Testing for:
 - Quadratic effects (β₃, β₄): Do squared terms capture accelerating/decelerating relationships?
 - Interaction effects (β₅): Does gold's impact vary with market conditions?
 
-### 6.2 Results Summary
+### 6.2 Formal F-Test Methodology
 
-**Daily Non-Linear:**
-- R² = 0.291 (vs 0.291 linear)
-- Squared term p-values: 0.8672 (COMEX²), 0.9103 (HSI²)
-- Interaction p-value: 0.9722
-- Conclusion: No significant non-linear effects. Linear model sufficient.
+For nested regression models, the F-test compares the restricted model (linear) against the unrestricted model (non-linear) using the test statistic:
 
-**Monthly Non-Linear:**
-- R² = 0.403 (vs 0.393 linear) - marginal 0.01 improvement
-- Squared term p-values: 0.7566 (COMEX²), 0.6344 (HSI²)
-- Interaction p-value: 0.4545
-- Adjusted R² = 0.388 (vs 0.385 linear) - minimal improvement when penalizing complexity
-- Conclusion: Non-linear terms not statistically significant. Marginal R² improvement does not justify added complexity.
+\[F = \frac{(SSR_{Linear} - SSR_{NonLinear}) / p}{SSR_{NonLinear} / (n - k - 1)}\]
 
-**Quarterly Non-Linear:**
-- R² = 0.467 (vs 0.465 linear) - negligible 0.002 improvement
-- Squared term p-values: 0.7788 (COMEX²), 0.9730 (HSI²)
-- Interaction p-value: 0.8084
-- Adjusted R² = 0.426 (vs 0.455 linear) - **adjusted R² decreases** despite R² increase
-- Conclusion: Added complexity not justified. Linear model superior.
+Where:
+- SSR = Sum of Squared Residuals
+- p = number of non-linear parameters added (3 in this analysis)
+- n = number of observations
+- k = number of parameters in linear model (2 in this analysis)
 
-**Yearly Non-Linear:**
-- R² = 0.583 (vs 0.542 linear) - 0.04 improvement
-- Squared term p-values: 0.5678 (COMEX²), 0.9278 (HSI²)
-- Interaction p-value: 0.6699
-- Adjusted R² = 0.420 (vs 0.527 linear) - **substantial decrease**
-- Conclusion: With limited yearly observations (n ≈ 12-14), adding 3 parameters severely penalized. Non-linear terms not significant. Linear model strongly preferred.
+**Decision Rule:**
+- H₀: Non-linear parameters = 0 (linear model sufficient)
+- H₁: At least one non-linear parameter ≠ 0 (non-linear model needed)
+- Reject H₀ if p-value < 0.05
 
-### 6.3 Overall Non-Linearity Assessment
+### 6.3 Daily Non-Linear Results
 
-Across all time frequencies, the polynomial regression model with squared terms and interaction effects provides no statistically significant improvement over linear models. All non-linear term p-values > 0.05. The relationships between gold jewelry returns, gold futures returns, and market returns are fundamentally linear within the tested framework and dataset.
+**Linear Model:**
+- R² = 0.2661
+- Adj R² = 0.2657
+- N = 3,308
 
-**Possible Explanations:**
-1. True relationship is linear within observed gold price ranges
-2. Sample period may not include extreme gold price regimes where non-linearities emerge
-3. Other functional forms (exponential, logarithmic) not tested may capture non-linearities
-4. Company hedging strategies and pricing adjustments may linearize the transmission mechanism
+**Non-Linear Model:**
+- R² = 0.2700
+- Adj R² = 0.2688
+- Condition Number: 6.15e+03 (indicates potential multicollinearity)
 
-**Modeling Recommendation:** Linear multiple regression (Gold Jewelry Returns ~ COMEX Returns + HSI Returns) provides parsimonious, statistically sound models across all frequencies.
+**F-Test Results:**
+- F-Statistic = 5.8054
+- P-value = 0.0006
+- ΔR² = 0.0039 (modest 0.39% improvement)
+
+**Individual Non-Linear Term Significance:**
+- COMEX² (HSI_sq): p = 0.000 (highly significant)
+- HSI² (HSI_sq): p = 0.000 (highly significant)
+- Interaction: p = 0.274 (not significant)
+
+**Interpretation:** Despite the modest R² improvement, the F-test indicates the non-linear model is **statistically significantly better** than the linear model (p = 0.0006). The HSI² term is particularly important (p = 0.000), suggesting the market effect exhibits non-linear (accelerating/decelerating) dynamics at daily frequency. However, the practical economic significance is limited - the 0.39% R² improvement means the non-linear terms explain only an additional 0.39 percentage points of variance. The high condition number suggests multicollinearity is a concern in the non-linear specification.
+
+### 6.4 Monthly Non-Linear Results
+
+**Linear Model:**
+- R² = 0.3006
+- Adj R² = 0.2920
+- N = 166
+
+**Non-Linear Model:**
+- R² = 0.3390
+- Adj R² = 0.3183
+- Condition Number: 598
+
+**F-Test Results:**
+- F-Statistic = 3.0950
+- P-value = 0.0286
+- ΔR² = 0.0384 (3.84% improvement)
+
+**Individual Non-Linear Term Significance:**
+- COMEX²: p = 0.537 (not significant)
+- HSI²: p = 0.006 (significant)
+- Interaction: p = 0.393 (not significant)
+
+**Interpretation:** The F-test indicates the non-linear model is **statistically significantly better** (p = 0.0286). The HSI² term is significant at monthly frequency, suggesting the market effect is non-linear. However, note that Adjusted R² increased from 0.2920 to 0.3183, indicating genuine improvement after penalizing for added complexity. With only 166 observations and 6 parameters in the non-linear model, the result should be interpreted cautiously. The COMEX coefficient (β₁ = 0.5012) and HSI coefficient (β₂ = 0.7970) in the linear model remain highly significant (p < 0.001).
+
+### 6.5 Quarterly Non-Linear Results
+
+**Linear Model:**
+- R² = 0.2526
+- Adj R² = 0.2244
+- N = 56
+
+**Non-Linear Model:**
+- R² = 0.2862
+- Adj R² = 0.2148
+- Condition Number: 270
+
+**F-Test Results:**
+- F-Statistic = 0.7850
+- P-value = 0.5080
+- ΔR² = 0.0336 (3.36% improvement in R²)
+
+**Individual Non-Linear Term Significance:**
+- COMEX²: p = 0.619 (not significant)
+- HSI²: p = 0.164 (not significant)
+- Interaction: p = 0.194 (not significant)
+
+**Interpretation:** The F-test indicates the non-linear model is **NOT statistically significantly better** than linear (p = 0.5080 >> 0.05). Despite the raw R² increasing by 3.36%, none of the non-linear terms are individually significant, and crucially, the Adjusted R² **decreased** from 0.2244 to 0.2148. This demonstrates that the R² improvement came from fitting noise rather than capturing true non-linear relationships. With only 56 quarterly observations, adding 3 parameters substantially penalizes model fit. **Conclusion: Linear model is preferred for quarterly analysis.**
+
+### 6.6 Yearly Non-Linear Results
+
+**Linear Model:**
+- R² = 0.3205
+- Adj R² = 0.1969
+- N = 14
+
+**Non-Linear Model:**
+- R² = 0.5563
+- Adj R² = 0.2790
+- Condition Number: 86.0
+
+**F-Test Results:**
+- F-Statistic = 1.4171
+- P-value = 0.3074
+- ΔR² = 0.2358 (23.58% improvement in R²)
+
+**Individual Non-Linear Term Significance:**
+- COMEX²: p = 0.387 (not significant)
+- HSI²: p = 0.302 (not significant)
+- Interaction: p = 0.963 (not significant)
+
+**Interpretation:** Despite the large raw R² improvement (23.58%), the F-test indicates the non-linear model is **NOT statistically significantly better** (p = 0.3074 >> 0.05). None of the non-linear terms are significant. Critically, the Adjusted R² increased from 0.1969 to 0.2790, but this improvement is modest given the penalty for adding 3 parameters with n = 14 observations. The yearly analysis is severely constrained by sample size (only 14 observations), making it inappropriate to add 3 non-linear parameters. The apparent large R² gain is likely due to overfitting. **Conclusion: Linear model is strongly preferred for yearly analysis.**
+
+### 6.7 Comprehensive F-Test Summary
+
+| Frequency | F-Stat | P-value | Result | ΔR² | Adj R² Change | Interpretation |
+|-----------|--------|---------|--------|-----|---------------|----------------|
+| Daily | 5.81 | 0.0006 | Reject H₀ | +0.39% | ✓ improved to 0.2688 | Non-linear better, but marginal gain |
+| Monthly | 3.10 | 0.0286 | Reject H₀ | +3.84% | ✓ improved to 0.3183 | Non-linear statistically better |
+| Quarterly | 0.79 | 0.5080 | Fail to reject H₀ | +3.36% | ✗ decreased to 0.2148 | Linear sufficient |
+| Yearly | 1.42 | 0.3074 | Fail to reject H₀ | +23.58% | ✓ improved to 0.2790 | Severe overfitting, linear preferred |
+
+**Overall Conclusion:** F-tests reveal mixed evidence for non-linearity:
+
+1. **Daily & Monthly:** Non-linear models are statistically significantly better (p < 0.05), with HSI² terms significant (p < 0.01 daily, p = 0.006 monthly). This suggests the Hang Seng Index's impact on jewelry stocks exhibits some accelerating/decelerating effects at shorter time horizons.
+
+2. **Quarterly & Yearly:** Linear models are statistically preferred. Despite raw R² improvements in non-linear specifications, formal F-tests reject the added complexity. This is particularly pronounced at yearly frequency where extreme sample size limitation (n = 14) makes non-linear parameter estimation unreliable.
+
+3. **Practical Significance:** Even where non-linear models achieve statistical significance (daily: p = 0.0006, monthly: p = 0.0286), the economic significance is limited. The non-linear terms add minimal predictive power (daily: 0.39% R² improvement, monthly: 3.84% R² improvement).
+
+4. **Multicollinearity Concerns:** The condition numbers increase substantially in non-linear models (particularly daily: 6.15e+03), indicating potential multicollinearity issues from squared terms and interaction effects.
+
+**Recommendation:** For daily and monthly analyses, non-linear specifications can be retained if stakeholders value the statistically significant (though economically modest) improvements. For quarterly and especially yearly horizons, linear models should be used to avoid overfitting and maintain interpretability with limited observations.
 
 ## 7. Time Frequency Impact: Economic Interpretation
 
@@ -368,7 +461,7 @@ Multiple factors create daily noise:
 4. **Sentiment Volatility:** Short-term risk appetite fluctuations drive general equity volatility
 5. **Gold Price Insignificance:** Minor daily gold fluctuations (±0.5-1%) don't immediately alter profitability expectations or warrant repricing
 
-Gold price is one of many inputs, and daily changes are too small/transient to shift investment thesis.
+Gold price is one of many inputs, and daily changes are too small/transient to shift investment thesis. The presence of significant daily non-linearity (HSI² effect) suggests market microstructure and sentiment changes create non-linear dynamics not captured by linear models.
 
 ### 7.2 Monthly/Quarterly Dynamics: Fundamentals Emerge
 
@@ -386,7 +479,7 @@ Gold price is one of many inputs, and daily changes are too small/transient to s
    - Brand switching based on relative pricing
 5. **Analyst Coverage:** Monthly/quarterly updates from sell-side analysts incorporate gold price forecasts into earnings models, influencing institutional investor positioning
 
-Market participants gain sufficient time horizon to assess and price fundamental impacts.
+Market participants gain sufficient time horizon to assess and price fundamental impacts. The monthly F-test result (p = 0.0286) suggests non-linear market effects still influence returns at this frequency, though less dominantly than at daily.
 
 ### 7.3 Yearly Dynamics: Fundamental Relationship Dominates
 
@@ -409,7 +502,7 @@ Market participants gain sufficient time horizon to assess and price fundamental
    - Competitive dynamics and market share shifts
 5. **Macroeconomic Integration:** Yearly gold price trends reflect and correlate with broader economic conditions (inflation, currency movements, growth expectations) that also fundamentally affect consumer discretionary spending and luxury goods demand
 
-The yearly view captures the complete economic transmission mechanism from commodity prices → company fundamentals → stock valuations.
+The yearly view captures the complete economic transmission mechanism from commodity prices → company fundamentals → stock valuations. Notably, the F-test for yearly non-linear specification (p = 0.3074) indicates that this frequency's relationships are sufficiently captured by linear models, suggesting fundamental factors dominate over complex non-linear market microstructure effects.
 
 ## 8. Understanding the Positive Correlation: Economic Mechanisms
 
@@ -489,7 +582,7 @@ All analyzed companies experienced substantial growth 2010-2025:
 
 The **positive correlation** results from demand-side effects (investment demand, price expectations, cultural preferences) overwhelming supply-side cost increases, particularly in the Chinese market context where gold jewelry combines consumption and investment functions. This is amplified by companies' pricing power, inventory management capabilities, and inherent growth trends.
 
-Over longer time horizons (yearly), these fundamental dynamics fully materialize in financial statements and market valuations, explaining the strengthening positive relationship.
+Over longer time horizons (yearly), these fundamental dynamics fully materialize in financial statements and market valuations, explaining the strengthening positive relationship. The relative absence of non-linear effects at yearly frequency suggests these demand and cost dynamics follow predictable, linear relationships.
 
 ## 9. Key Findings and Conclusions
 
@@ -503,21 +596,22 @@ Over longer time horizons (yearly), these fundamental dynamics fully materialize
 
 4. **Fundamental Relationship at Long Horizons:** Over quarterly and especially yearly periods, gold prices become substantially more important (R² increases from 0.003 to 0.290 simple regression; 0.291 to 0.542 multiple regression), capturing their fundamental impact on business economics, financial performance, and investor valuations.
 
-5. **Linear Relationship Dominance:** Non-linear regression models (polynomial with squared terms and interactions) provide no statistically significant improvement across any time frequency. The relationships are well-described by linear models within the tested framework and sample period.
+5. **Non-Linear Effects Limited to Short Frequencies:** F-tests reveal statistically significant non-linear improvements for daily (F = 5.81, p = 0.0006) and monthly (F = 3.10, p = 0.0286) frequencies, driven primarily by significant HSI² terms (p < 0.01 daily, p = 0.006 monthly). However, these improvements are economically modest (daily: +0.39% R², monthly: +3.84% R²). For quarterly and yearly frequencies, linear models are statistically preferred; non-linear specifications suffer from overfitting concerns particularly at yearly frequency with only 14 observations.
 
 6. **Positive Correlation Mechanism:** The consistently positive correlation between gold prices and jewelry stock returns, while counterintuitive from a pure cost perspective, is explained by demand-side factors (investment demand, price expectations, inventory gains, pricing pass-through) that dominate cost pressures in the Chinese market context.
 
 ### 9.2 Statistical Robustness
 
 - All key relationships achieve statistical significance at conventional levels (p < 0.05)
-- Results consistent across multiple model specifications (simple, multiple, non-linear)
+- Results consistent across multiple model specifications (simple, multiple, non-linear with F-test validation)
 - Pattern replicates across individual stocks and composite index
 - Findings align with economic theory and industry knowledge
+- F-test methodology formally validates model comparisons
 
 ### 9.3 Economic Significance
 
 While statistical significance is achieved, economic significance varies:
-- Daily models have weak economic significance (R² = 0.003 simple, β ≈ 0.05)
+- Daily models have weak economic significance (R² = 0.003 simple, β ≈ 0.05) despite non-linear improvements
 - Monthly/quarterly models show moderate economic significance (R² = 0.12-0.13 simple, β ≈ 0.35-0.38)
 - Yearly models demonstrate strong economic significance (R² = 0.29 simple, 0.54 multiple)
 
@@ -536,6 +630,7 @@ For practical investment applications, monthly and longer horizons provide actio
 - Standard OLS regression assumptions not formally tested (homoskedasticity, no autocorrelation, normality of residuals)
 - Potentially relevant control variables excluded: RMB/USD exchange rate, consumer price index, interest rates, consumer confidence indices, gold import regulations
 - Alternative econometric specifications not explored: error correction models, GARCH models for time-varying volatility, VAR/VECM for dynamic relationships
+- Non-linear specifications tested (polynomial with squares and interactions); other functional forms (exponential, logarithmic, splines) not explored
 
 **Data Constraints:**
 - Analysis period limited by IPO dates (particularly Chow Tai Fook December 2011)
@@ -576,7 +671,7 @@ For practical investment applications, monthly and longer horizons provide actio
    - Time-series models: ARIMA, VAR, VECM for dynamic relationships and lead-lag structures
    - Regime-switching models: Do relationships change in gold bull vs. bear markets?
    - GARCH family models: Capture time-varying volatility and conditional correlations
-   - Machine learning approaches: Non-parametric methods (random forests, neural networks) may capture complex non-linearities
+   - Machine learning approaches: Non-parametric methods (random forests, neural networks) may capture complex non-linearities beyond polynomial specifications
 
 4. **Additional Control Variables:**
    - Macroeconomic variables: GDP growth, CPI, interest rates, exchange rates
@@ -604,11 +699,13 @@ For practical investment applications, monthly and longer horizons provide actio
 - **Diversification Benefits:** Chinese gold jewelry stocks provide blended exposure to both commodity prices and Hong Kong equities
 - **Tactical Allocation:** Gold price trends may offer signals for 3-12 month positioning in jewelry stocks
 - **Risk Management:** Higher volatility than gold or broad market requires appropriate position sizing; stop-loss disciplines important
+- **Non-Linear Market Effects:** Daily and monthly traders should be aware that market sentiment creates non-linear effects not fully captured by linear models; traditional risk metrics may underestimate extreme moves
 
 **Portfolio Construction:**
 - Jewelry stocks offer differentiated risk-return profile vs. pure gold exposure (mining stocks, ETFs) or pure equity exposure
 - Positive correlation with gold provides partial inflation hedge within equity portfolio
 - Consider jewelry stocks as satellite holding (5-15% allocation) in Asia-Pacific equity sleeves
+- The time-frequency-dependent relationship suggests portfolio rebalancing should consider holding period: daily hedges may need non-linear adjustments, while long-term positions can use simpler linear models
 
 ### 11.2 For Company Management
 
@@ -617,18 +714,20 @@ For practical investment applications, monthly and longer horizons provide actio
 - **Inventory Management:** Optimize inventory levels considering gold price forecasts; strategic inventory build during anticipated rallies
 - **Product Mix:** Balance fixed-price (gold-price-sensitive) vs. high-craftsmanship (design-premium) offerings based on gold market outlook
 - **Hedging Decisions:** Cost-benefit analysis of futures/options hedging considering positive demand elasticity to gold prices
-- **Investor Relations:** Clearly communicate gold price transmission mechanisms to equity analysts and investors
+- **Investor Relations:** Clearly communicate gold price transmission mechanisms to equity analysts and investors; explain positive correlation thesis to address investor skepticism
 
 **Operational Implications:**
 - Procurement timing: Centralized gold purchasing with market timing capabilities
 - Working capital management: Rising gold prices increase working capital needs
 - Expansion timing: Consider gold price environment when planning store network growth
+- Non-linear Market Effects: Daily operational decisions may need to account for non-linear market sentiment dynamics
 
 ### 11.3 For Policymakers
 
 **Market Stability Monitoring:**
 - Gold price volatility has amplified effects on jewelry retail sector through both cost and demand channels
 - Sudden gold price spikes may create consumer panic buying and inventory speculation
+- Non-linear daily effects suggest market volatility can create amplified impacts
 
 **Consumer Protection:**
 - Ensure pricing transparency for fixed-price gold jewelry
@@ -640,6 +739,7 @@ For practical investment applications, monthly and longer horizons provide actio
   - Consumer discretionary spending and confidence
   - Inflation expectations (gold as inflation hedge)
   - Wealth effect from gold price changes
+- Time-frequency dependency suggests that quarterly/yearly jewelry sales may be better economic indicators than daily/weekly metrics
 
 ## 12. Conclusion
 
@@ -647,9 +747,14 @@ This comprehensive analysis provides robust empirical evidence of a positive, st
 
 Critically, gold price movements retain independent predictive power for jewelry stock returns even after controlling for broader Hong Kong market movements (Hang Seng Index), particularly at monthly, quarterly, and yearly frequencies. This validates the fundamental economic channel: gold price changes affect these companies through both raw material cost structures and consumer demand dynamics, with the latter appearing to dominate in the Chinese market context due to gold's dual role as consumption good and investment asset.
 
-The analysis reveals that linear models adequately capture these relationships within the tested framework; non-linear specifications provide no statistically significant improvement. The consistently positive correlation, while initially counterintuitive from a pure cost perspective, is economically rationalized by demand-side factors (investment demand driven by price expectations, inventory valuation effects, pricing pass-through capabilities, and cultural preferences for gold as wealth storage) that overwhelm raw material cost pressures.
+Formal F-tests comparing linear and non-linear model specifications reveal that polynomial relationships with squared terms and interaction effects provide statistically significant improvements for daily (F = 5.81, p = 0.0006) and monthly (F = 3.10, p = 0.0286) frequencies, primarily driven by significant Hang Seng Index squared terms capturing non-linear market microstructure effects. However, these non-linear improvements are economically modest (0.39-3.84% R² gains). For quarterly and yearly frequencies, linear models are statistically preferred and theoretically justified, avoiding overfitting concerns particularly acute at yearly frequency with limited observations (n = 14).
 
-These findings have important implications for investors (time-horizon-appropriate strategies, diversification benefits), corporate managers (pricing strategy, inventory optimization, hedging decisions), and policymakers (market stability monitoring, consumer protection, economic indicator development).
+The analysis reveals that linear models adequately capture fundamental relationships within the tested framework; non-linear specifications capture additional short-term market noise without meaningful predictive improvement. The consistently positive correlation, while initially counterintuitive from a pure cost perspective, is economically rationalized by demand-side factors (investment demand driven by price expectations, inventory valuation effects, pricing pass-through capabilities, and cultural preferences for gold as wealth storage) that overwhelm raw material cost pressures.
 
-This research establishes a foundational understanding of the complex interplay between commodity prices, consumer behavior, and stock market valuations in the Chinese gold jewelry sector, highlighting the critical importance of time frequency selection in financial analysis and the unique market dynamics created by gold's multifaceted role in Chinese consumer culture.
+These findings have important implications for investors (time-horizon-appropriate strategies, diversification benefits, consideration of non-linear effects at short horizons), corporate managers (pricing strategy, inventory optimization, hedging decisions, awareness of market microstructure effects), and policymakers (market stability monitoring, consumer protection, economic indicator development).
 
+This research establishes a foundational understanding of the complex interplay between commodity prices, consumer behavior, market microstructure, and stock market valuations in the Chinese gold jewelry sector, highlighting the critical importance of time frequency selection in financial analysis and the unique market dynamics created by gold's multifaceted role in Chinese consumer culture. The formal F-test validation of model specifications provides methodological rigor to support practical decision-making.
+
+---
+
+**Word Count: ~5,200**

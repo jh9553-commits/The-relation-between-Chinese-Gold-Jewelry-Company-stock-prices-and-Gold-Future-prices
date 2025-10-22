@@ -755,6 +755,3 @@ These findings have important implications for investors (time-horizon-appropria
 
 This research establishes a foundational understanding of the complex interplay between commodity prices, consumer behavior, market microstructure, and stock market valuations in the Chinese gold jewelry sector, highlighting the critical importance of time frequency selection in financial analysis and the unique market dynamics created by gold's multifaceted role in Chinese consumer culture. The formal F-test validation of model specifications provides methodological rigor to support practical decision-making.
 
----
-
-**Word Count: ~5,200**

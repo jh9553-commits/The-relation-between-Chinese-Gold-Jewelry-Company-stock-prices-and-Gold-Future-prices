@@ -578,12 +578,6 @@ All analyzed companies experienced substantial growth 2010-2025:
 
 **Implication:** Positive stock returns over the period partly reflect inherent company growth independent of gold prices. Gold price correlation may capture some of this if growth periods coincided with gold rallies, or if company expansions were strategically timed to gold market conditions.
 
-### 8.7 Integrated Explanation
-
-The **positive correlation** results from demand-side effects (investment demand, price expectations, cultural preferences) overwhelming supply-side cost increases, particularly in the Chinese market context where gold jewelry combines consumption and investment functions. This is amplified by companies' pricing power, inventory management capabilities, and inherent growth trends.
-
-Over longer time horizons (yearly), these fundamental dynamics fully materialize in financial statements and market valuations, explaining the strengthening positive relationship. The relative absence of non-linear effects at yearly frequency suggests these demand and cost dynamics follow predictable, linear relationships.
-
 ## 9. Key Findings and Conclusions
 
 ### 9.1 Primary Findings
@@ -685,11 +679,6 @@ For practical investment applications, monthly and longer horizons provide actio
    - Time-series analysis of shifting product mix and its impact on gold price sensitivity
    - Consumer preference evolution: tracking fixed-price vs. design-premium demand
 
-6. **International Comparison Study:**
-   - Western market comparison: Tiffany & Co., Signet Jewelers, Pandora
-   - Do Western jewelry stocks show same positive correlation or cost-driven negative correlation?
-   - Cultural and institutional factors explaining cross-country differences
-
 ## 11. Practical Implications
 
 ### 11.1 For Investors
@@ -722,28 +711,9 @@ For practical investment applications, monthly and longer horizons provide actio
 - Expansion timing: Consider gold price environment when planning store network growth
 - Non-linear Market Effects: Daily operational decisions may need to account for non-linear market sentiment dynamics
 
-### 11.3 For Policymakers
-
-**Market Stability Monitoring:**
-- Gold price volatility has amplified effects on jewelry retail sector through both cost and demand channels
-- Sudden gold price spikes may create consumer panic buying and inventory speculation
-- Non-linear daily effects suggest market volatility can create amplified impacts
-
-**Consumer Protection:**
-- Ensure pricing transparency for fixed-price gold jewelry
-- Regulate misleading "investment value" marketing claims
-- Monitor retailer markup practices during gold price volatility
-
-**Economic Indicators:**
-- Jewelry sales volumes may serve as indicators of:
-  - Consumer discretionary spending and confidence
-  - Inflation expectations (gold as inflation hedge)
-  - Wealth effect from gold price changes
-- Time-frequency dependency suggests that quarterly/yearly jewelry sales may be better economic indicators than daily/weekly metrics
-
 ## 12. Conclusion
 
-This comprehensive analysis provides robust empirical evidence of a positive, statistically significant, and time-frequency-dependent relationship between gold futures prices and Chinese gold jewelry company stock returns. The relationship strengthens dramatically from negligible daily correlation (ρ = 0.05, R² = 0.003) to strong yearly correlation (ρ = 0.54, R² = 0.290), reflecting the time required for fundamental economic transmission mechanisms to manifest in corporate financial performance and investor valuations.
+This analysis provides robust empirical evidence of a positive, statistically significant, and time-frequency-dependent relationship between gold futures prices and Chinese gold jewelry company stock returns. The relationship strengthens dramatically from negligible daily correlation (ρ = 0.05, R² = 0.003) to strong yearly correlation (ρ = 0.54, R² = 0.290), reflecting the time required for fundamental economic transmission mechanisms to manifest in corporate financial performance and investor valuations.
 
 Critically, gold price movements retain independent predictive power for jewelry stock returns even after controlling for broader Hong Kong market movements (Hang Seng Index), particularly at monthly, quarterly, and yearly frequencies. This validates the fundamental economic channel: gold price changes affect these companies through both raw material cost structures and consumer demand dynamics, with the latter appearing to dominate in the Chinese market context due to gold's dual role as consumption good and investment asset.
 
